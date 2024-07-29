@@ -4,10 +4,10 @@ import { View, Text, Button, TextInput, Alert } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { mmkv } from '../../utils/mmkv/mmkv';
+import { mmkv } from '../../utils/Storage/mmkv';
 import styles from './styleLogin';
-import { FormValues, LoginScreenNavigationProp } from './utils/interfaces';
-import { schema } from './utils/validation';
+import { FormValues, LoginScreenNavigationProp } from './utils/types/interfaces';
+import { schema } from './utils/schema/validation';
 
 
 

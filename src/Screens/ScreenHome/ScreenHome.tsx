@@ -2,7 +2,7 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { useDispatch } from 'react-redux';
-import {  Props } from './utils/interfaces';
+import {  Props } from './utils/type/interfaces';
 import styles from './styleHome';
 import { logout } from '../ScreenLogin/redux/authSlice';
 
