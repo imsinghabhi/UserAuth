@@ -1,24 +1,19 @@
+// src/Screens/ScreenLogin/ScreenLogin.tsx
 import React from 'react';
-import { View, Text, Button, TextInput, Alert, StyleSheet } from 'react-native';
+import { View, Text, Button, TextInput, Alert } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
-import * as yup from 'yup';
+
 import { yupResolver } from '@hookform/resolvers/yup';
 import { mmkv } from '../../utils/mmkv/mmkv';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../utils/interfaces/RootStackParamList';
+import styles from './styleLogin';
+import { FormValues, LoginScreenNavigationProp } from './utils/interfaces';
+import { schema } from './utils/validation';
 
-const schema = yup.object().shape({
-  username: yup.string().required('Username is required'),
-  password: yup.string().required('Password is required'),
-});
 
-type FormValues = {
-  username: string;
-  password: string;
-};
+
 
 type ScreenLoginProps = {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'Login'>;
+  navigation: LoginScreenNavigationProp;
 };
 
 const ScreenLogin: React.FC<ScreenLoginProps> = ({ navigation }) => {
@@ -77,42 +72,10 @@ const ScreenLogin: React.FC<ScreenLoginProps> = ({ navigation }) => {
         New user? Please{' '}
         <Text style={styles.registerLink} onPress={() => navigation.navigate('Register')}>
           register here
-        </Text>.
+        </Text>
       </Text>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-    backgroundColor: '#fff',
-  },
-  title: {
-    fontSize: 24,
-    marginBottom: 16,
-    textAlign: 'center',
-  },
-  input: {
-    height: 40,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    marginBottom: 12,
-    paddingHorizontal: 8,
-  },
-  errorText: {
-    color: 'red',
-    marginBottom: 12,
-  },
-  registerPrompt: {
-    marginTop: 16,
-    textAlign: 'center',
-  },
-  registerLink: {
-    color: '#007BFF',
-    fontWeight: 'bold',
-  },
-});
 
 export default ScreenLogin;

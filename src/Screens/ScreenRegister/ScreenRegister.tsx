@@ -1,24 +1,15 @@
+// src/Screens/ScreenRegister/ScreenRegister.tsx
 import React from 'react';
-import { View, Text, Button, TextInput, Alert, StyleSheet } from 'react-native';
+import { View, Text, Button, TextInput, Alert } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { mmkv } from '../../utils/mmkv/mmkv';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../utils/interfaces/RootStackParamList';
-
-const schema = yup.object().shape({
-  username: yup.string().required('Username is required'),
-  password: yup.string().required('Password is required'),
-});
-
-type FormValues = {
-  username: string;
-  password: string;
-};
+import styles from './styleRegister';
+import { FormValues, RegisterScreenNavigationProp } from './utils/interfaces';
+import { schema } from './utils/validation';
 
 type ScreenRegisterProps = {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'Register'>;
+  navigation: RegisterScreenNavigationProp;
 };
 
 const ScreenRegister: React.FC<ScreenRegisterProps> = ({ navigation }) => {
@@ -43,6 +34,48 @@ const ScreenRegister: React.FC<ScreenRegisterProps> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Register</Text>
+      <Controller
+        control={control}
+        name="name"
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            style={styles.input}
+            placeholder="Name"
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+          />
+        )}
+      />
+      {errors.name && <Text style={styles.errorText}>{errors.name.message}</Text>}
+      <Controller
+        control={control}
+        name="email"
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+          />
+        )}
+      />
+      {errors.email && <Text style={styles.errorText}>{errors.email.message}</Text>}
+      <Controller
+        control={control}
+        name="phone"
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            style={styles.input}
+            placeholder="Phone Number"
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+          />
+        )}
+      />
+      {errors.phone && <Text style={styles.errorText}>{errors.phone.message}</Text>}
       <Controller
         control={control}
         name="username"
@@ -76,29 +109,5 @@ const ScreenRegister: React.FC<ScreenRegisterProps> = ({ navigation }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-    backgroundColor: '#fff',
-  },
-  title: {
-    fontSize: 24,
-    marginBottom: 16,
-    textAlign: 'center',
-  },
-  input: {
-    height: 40,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    marginBottom: 12,
-    paddingHorizontal: 8,
-  },
-  errorText: {
-    color: 'red',
-    marginBottom: 12,
-  },
-});
 
 export default ScreenRegister;
