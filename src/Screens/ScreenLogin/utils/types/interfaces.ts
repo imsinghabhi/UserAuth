@@ -1,4 +1,3 @@
-// src/utils/interfaces/interfaces.ts
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../../utils/interfaces/RootStackParamList';
 

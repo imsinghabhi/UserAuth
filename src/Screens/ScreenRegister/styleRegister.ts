@@ -1,4 +1,3 @@
-// src/Screens/ScreenRegister/styleRegister.ts
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({

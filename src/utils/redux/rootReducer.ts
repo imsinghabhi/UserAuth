@@ -1,6 +1,4 @@
-// src/redux/rootReducer.ts
 import { combineReducers } from '@reduxjs/toolkit';
-// import authReducer from '../Screens/ScreenLogin/redux/authSlice';
 import authReducer from '../../Screens/ScreenLogin/redux/authSlice'
 
 const rootReducer = combineReducers({

@@ -1,4 +1,3 @@
-// src/Screens/ScreenLogin/styleLogin.ts
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
