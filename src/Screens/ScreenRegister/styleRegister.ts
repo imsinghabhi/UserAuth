@@ -7,7 +7,7 @@ import { StyleSheet } from 'react-native';
     alignItems: 'center',
     backgroundColor: '#F8F8F8', 
   },
-  container: {
+  RegisterContainer: {
     
     marginBottom:70,
     width: '90%',
@@ -22,12 +22,12 @@ import { StyleSheet } from 'react-native';
     elevation: 5,
     alignItems: 'center',
   },
-  title: {
+  RegisterTitle: {
     fontSize: 24,
     marginBottom: 16,
     fontWeight: 'bold',
   },
-  input: {
+  RegisterInput: {
     height: 40,
     width: '100%',
     borderColor: '#ccc',

@@ -1,13 +1,7 @@
 import React from 'react';
-import Svg, { Path } from 'react-native-svg';
+import Svg, { Path, SvgProps } from 'react-native-svg';
 
-interface ViewIconProps {
-  width?: number;
-  height?: number;
-  color?: string;
-}
-
-const ViewIcon: React.FC<ViewIconProps> = ({ width = 24, height = 24, color = '#323232' }) => (
+const ViewIcon: React.FC<SvgProps> = ({ width = 24, height = 24, color = '#323232' }) => (
   <Svg width={width} height={height} viewBox="0 0 24 24" fill="none">
     <Path
       opacity="0.1"

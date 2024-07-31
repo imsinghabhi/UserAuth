@@ -8,8 +8,10 @@ import LoadingScreen from './Components/ComponentLoader/LoadingScreen';
 import ErrorScreen from './Components/ComponentError/ErrorScreen';
 import { Props } from './utils/type/interfaces';
 import { RootState } from '../../utils/redux/store';
+import styles from './styleHome';
 
-const ScreenHome: React.FC<Props> = ({ navigation }) => {
+
+const ScreenHome: React.FC<Props> = () => {
   const dispatch = useDispatch();
   const { data: imageData, loading, error } = useSelector((state: RootState) => state.images);
 
@@ -38,18 +40,11 @@ const ScreenHome: React.FC<Props> = ({ navigation }) => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.HomeScreenContainer}>
       <ImageList imageData={imageData} />
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f7f5f5', 
-    padding: 10, 
-  },
-});
 
 export default ScreenHome;

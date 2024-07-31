@@ -14,14 +14,14 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
       elevation: 2,
     },
-    image: {
+    ApiImage: {
       width: '100%',
       height: screenWidth / 2 - 20,
     },
     infoContainer: {
       padding: 10,
     },
-    tag: {
+    ImgTag: {
       fontSize: 14,
       fontWeight: 'bold',
       marginBottom: 5,
