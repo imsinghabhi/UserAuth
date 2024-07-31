@@ -4,7 +4,7 @@ import { fetchImageDataRequest, fetchImageDataSuccess, fetchImageDataFailure } f
 import { ActionsImage } from './imageSlice';
 import { fetchImageDataFromApi } from '../utils/Services/ApiCall'; 
 
-const fetchImageDataEpic: Epic<ActionsImage, ActionsImage, any> = (action$) =>
+const fetchImageDataEpic = (action$:Observable<ActionsImage>) =>
   action$.pipe(
     ofType(fetchImageDataRequest.type),
     switchMap(() =>
