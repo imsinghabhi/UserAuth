@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   LoginButton: {
-    backgroundColor: '#007BFF',
+    backgroundColor: 'black',
     paddingVertical: 15,
     borderRadius: 5,
     marginTop: 10,
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   registerLink: {
-    color: '#007BFF',
+    color: 'black',
     fontWeight: 'bold',
   },
 });
