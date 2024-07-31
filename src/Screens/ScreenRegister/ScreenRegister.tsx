@@ -31,14 +31,14 @@ const ScreenRegister: React.FC<ScreenRegisterProps> = ({ navigation }) => {
 
   return (
     <View style={styles.outerContainer}>
-      <View style={styles.container}>
-        <Text style={styles.title}>Register</Text>
+      <View style={styles.RegisterContainer}>
+        <Text style={styles.RegisterTitle}>Register</Text>
         <Controller
           control={control}
           name="name"
           render={({ field: { onChange, onBlur, value } }) => (
             <TextInput
-              style={styles.input}
+              style={styles.RegisterInput}
               placeholder="Name"
               onBlur={onBlur}
               onChangeText={onChange}
@@ -52,7 +52,7 @@ const ScreenRegister: React.FC<ScreenRegisterProps> = ({ navigation }) => {
           name="email"
           render={({ field: { onChange, onBlur, value } }) => (
             <TextInput
-              style={styles.input}
+              style={styles.RegisterInput}
               placeholder="Email"
               onBlur={onBlur}
               onChangeText={onChange}
@@ -66,7 +66,7 @@ const ScreenRegister: React.FC<ScreenRegisterProps> = ({ navigation }) => {
           name="phone"
           render={({ field: { onChange, onBlur, value } }) => (
             <TextInput
-              style={styles.input}
+              style={styles.RegisterInput}
               placeholder="Phone Number"
               onBlur={onBlur}
               onChangeText={onChange}
@@ -80,7 +80,7 @@ const ScreenRegister: React.FC<ScreenRegisterProps> = ({ navigation }) => {
           name="username"
           render={({ field: { onChange, onBlur, value } }) => (
             <TextInput
-              style={styles.input}
+              style={styles.RegisterInput}
               placeholder="Username"
               onBlur={onBlur}
               onChangeText={onChange}
@@ -94,7 +94,7 @@ const ScreenRegister: React.FC<ScreenRegisterProps> = ({ navigation }) => {
           name="password"
           render={({ field: { onChange, onBlur, value } }) => (
             <TextInput
-              style={styles.input}
+              style={styles.RegisterInput}
               placeholder="Password"
               onBlur={onBlur}
               onChangeText={onChange}
@@ -104,7 +104,10 @@ const ScreenRegister: React.FC<ScreenRegisterProps> = ({ navigation }) => {
           )}
         />
         {errors.password && <Text style={styles.errorText}>{errors.password.message}</Text>}
-        <Button title="Register" onPress={handleSubmit(onSubmit)} />
+        
+        <TouchableOpacity style={styles.RegisterButton} onPress={handleSubmit(onSubmit)}>
+              <Text style={styles.RegisterText}>Register</Text>
+        </TouchableOpacity>
         <Text style={styles.loginPrompt}>
           Already have an account?{' '}
           <Text style={styles.loginLink} onPress={() => navigation.navigate('Login')}>

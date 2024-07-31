@@ -29,3 +29,5 @@ export const { login, logout } = authSlice.actions;
 export default authSlice.reducer;
 
 export type AuthActions = typeof authSlice.actions;
+
+export type ActionsAuth = ReturnType<typeof login | typeof logout>;

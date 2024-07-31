@@ -4,15 +4,13 @@ import FavIcon from '../../../../assets/FavIcon';
 import DownloadIcon from '../../../../assets/DownloadIcon';
 import ViewIcon from '../../../../assets/ViewsIcon';
 import styles from './styles';
-import ImageData from './interfaces';
-
-
+import { ImageData } from '../../utils/type/interfaces';
 
 const ImageItem: React.FC<{ item: ImageData; onPress?: () => void }> = ({ item, onPress }) => (
   <TouchableOpacity style={styles.imageContainer} onPress={onPress}>
-    <Image source={{ uri: item.largeImageURL }} style={styles.image} />
+    <Image source={{ uri: item.largeImageURL }} style={styles.ApiImage} />
     <View style={styles.infoContainer}>
-      <Text style={styles.tag}>Tags: {item.tags}</Text>
+      <Text style={styles.ImgTag}>Tags: {item.tags}</Text>
       <View style={styles.iconsContainer}>
         <View style={styles.iconTextContainer}>
           <FavIcon width={16} height={16} color="#000" />

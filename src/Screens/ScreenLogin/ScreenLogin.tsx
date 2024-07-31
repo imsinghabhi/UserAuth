@@ -31,15 +31,15 @@ const ScreenLogin: React.FC<ScreenLoginProps> = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.LoginContainer}>
       <View style={styles.formContainer}>
-        <Text style={styles.title}>Login</Text>
+        <Text style={styles.LoginTitle}>Login</Text>
         <Controller
           control={control}
           name="username"
           render={({ field: { onChange, onBlur, value } }) => (
             <TextInput
-              style={styles.input}
+              style={styles.LoginInput}
               placeholder="Username"
               onBlur={onBlur}
               onChangeText={onChange}
@@ -53,7 +53,7 @@ const ScreenLogin: React.FC<ScreenLoginProps> = ({ navigation }) => {
           name="password"
           render={({ field: { onChange, onBlur, value } }) => (
             <TextInput
-              style={styles.input}
+              style={styles.LoginInput}
               placeholder="Password"
               onBlur={onBlur}
               onChangeText={onChange}
@@ -63,7 +63,7 @@ const ScreenLogin: React.FC<ScreenLoginProps> = ({ navigation }) => {
           )}
         />
         {errors.password && <Text style={styles.errorText}>{errors.password.message}</Text>}
-        <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
+        <TouchableOpacity style={styles.LoginButton} onPress={handleSubmit(onSubmit)}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
         <Text style={styles.registerPrompt}>

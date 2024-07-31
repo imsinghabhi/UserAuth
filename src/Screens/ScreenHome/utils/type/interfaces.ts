@@ -10,3 +10,17 @@ export type HomeScreenNavigationProp = NativeStackNavigationProp<
 export type Props = {
     navigation: HomeScreenNavigationProp;
   };
+
+  export interface ImageData {
+    largeImageURL: string;
+    tags: string;
+    likes: number;
+    downloads: number;
+    views: number;
+  }
+
+  export interface FetchImageDataResponse {
+    hits: ImageData[];
+    total: number;
+    totalHits: number;
+  }

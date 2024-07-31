@@ -7,7 +7,7 @@ import { StyleSheet } from 'react-native';
     alignItems: 'center',
     backgroundColor: '#F8F8F8', 
   },
-  container: {
+  RegisterContainer: {
     
     marginBottom:70,
     width: '90%',
@@ -22,12 +22,13 @@ import { StyleSheet } from 'react-native';
     elevation: 5,
     alignItems: 'center',
   },
-  title: {
+ 
+  RegisterTitle: {
     fontSize: 24,
     marginBottom: 16,
     fontWeight: 'bold',
   },
-  input: {
+  RegisterInput: {
     height: 40,
     width: '100%',
     borderColor: '#ccc',
@@ -36,6 +37,18 @@ import { StyleSheet } from 'react-native';
     marginBottom: 12,
     paddingHorizontal: 10,
     backgroundColor: '#F9F9F9',
+  },
+  RegisterButton:{
+    width:'100%',
+    backgroundColor: 'black',
+    paddingVertical: 15,
+    borderRadius: 5,
+    marginTop: 10,
+    alignItems: 'center',
+  },RegisterText:{
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   errorText: {
     color: 'red',
@@ -48,7 +61,7 @@ import { StyleSheet } from 'react-native';
     fontSize: 16,
   },
   loginLink: {
-    color: '#007BFF',
+    color: 'black',
     fontWeight: 'bold',
   },
 });

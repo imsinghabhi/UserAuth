@@ -43,3 +43,7 @@ export const { fetchImageDataRequest, fetchImageDataSuccess, fetchImageDataFailu
 export default imageSlice.reducer;
 
 export type ImageActions = typeof imageSlice.actions;
+
+export type ActionsImage = ReturnType<typeof fetchImageDataRequest> 
+| ReturnType<typeof fetchImageDataSuccess>
+ | ReturnType<typeof fetchImageDataFailure>;

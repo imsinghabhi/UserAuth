@@ -2,13 +2,13 @@ import { StyleSheet } from "react-native";
 
 
 const styles = StyleSheet.create({
-    container: {
+    ErrorContainer: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: '#DFD3C3',
     },
-    title: {
+    ErrorTitle: {
       fontSize: 24,
       fontWeight: 'bold',
     }

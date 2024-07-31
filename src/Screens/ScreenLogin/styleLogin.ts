@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {
+  LoginContainer: {
     flex: 1,
     backgroundColor: '#f0f4f7',
     justifyContent: 'center',
@@ -22,14 +22,14 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
-  title: {
+  LoginTitle: {
     fontSize: 24,
     fontWeight: 'bold',
     color: '#333',
     marginBottom: 20,
     textAlign: 'center',
   },
-  input: {
+  LoginInput: {
     height: 50,
     borderColor: '#ccc',
     borderWidth: 1,
@@ -43,8 +43,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontSize: 12,
   },
-  button: {
-    backgroundColor: '#007BFF',
+  LoginButton: {
+    backgroundColor: 'black',
     paddingVertical: 15,
     borderRadius: 5,
     marginTop: 10,
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   registerLink: {
-    color: '#007BFF',
+    color: 'black',
     fontWeight: 'bold',
   },
 });
