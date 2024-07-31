@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { combineEpics, createEpicMiddleware } from 'redux-observable';
+import { createEpicMiddleware } from 'redux-observable';
 import rootReducer from './rootReducer';
 import { rootEpic } from './rootEpic';
 
@@ -14,5 +14,8 @@ const store = configureStore({
 });
 
 epicMiddleware.run(rootEpic);
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
 export default store;
