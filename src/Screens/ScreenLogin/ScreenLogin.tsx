@@ -1,33 +1,40 @@
 import React from 'react';
-import { View, Text, Button, TextInput, Alert, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Alert, TouchableOpacity } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { mmkv } from '../../utils/Storage/mmkv';
-import styles from './styleLogin';
-import { FormValues, LoginScreenNavigationProp } from './utils/types/interfaces';
 import { schema } from './utils/schema/validation';
+import styles from './styleLogin';
+import { loginUser } from './redux/authService';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../../utils/interfaces/RootStackParamList';
 
-type ScreenLoginProps = {
-  navigation: LoginScreenNavigationProp;
+type FormValues = {
+  email: string;
+  password: string;
 };
 
-const ScreenLogin: React.FC<ScreenLoginProps> = ({ navigation }) => {
+type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
+
+const ScreenLogin: React.FC = () => {
   const { control, handleSubmit, formState: { errors } } = useForm<FormValues>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: FormValues) => {
-    const storedUsername = mmkv.getString('username');
-    const storedPassword = mmkv.getString('userpassword');
-    const hashedPassword = btoa(data.password);
+  const navigation = useNavigation<LoginScreenNavigationProp>();
 
-    if (data.username !== storedUsername || hashedPassword !== storedPassword) {
-      Alert.alert('Login Error', 'Invalid username or password');
-      return;
+  const onSubmit = async (data: FormValues) => {
+    try {
+      const user = await loginUser(data.email, data.password);
+      Alert.alert('Login Successful', `Welcome back, ${user.displayName}!`);
+      navigation.navigate('Home');  // Navigate to Home screen
+    } catch (error) {
+      if (error instanceof Error) {
+        Alert.alert('Login Error', error.message);
+      } else {
+        Alert.alert('Login Error', 'An unknown error occurred');
+      }
     }
-
-    Alert.alert('Login Successful', 'Welcome back!');
-    navigation.navigate('Home');
   };
 
   return (
@@ -36,18 +43,18 @@ const ScreenLogin: React.FC<ScreenLoginProps> = ({ navigation }) => {
         <Text style={styles.LoginTitle}>Login</Text>
         <Controller
           control={control}
-          name="username"
+          name="email"
           render={({ field: { onChange, onBlur, value } }) => (
             <TextInput
               style={styles.LoginInput}
-              placeholder="Username"
+              placeholder="Email"
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
             />
           )}
         />
-        {errors.username && <Text style={styles.errorText}>{errors.username.message}</Text>}
+        {errors.email && <Text style={styles.errorText}>{errors.email.message}</Text>}
         <Controller
           control={control}
           name="password"

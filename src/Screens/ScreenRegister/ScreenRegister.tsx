@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, Text, Button, TextInput, Alert, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Alert, TouchableOpacity } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { mmkv } from '../../utils/Storage/mmkv';
-import { FormValues, RegisterScreenNavigationProp } from './utils/types/interfaces';
 import { schema } from './utils/schema/validation';
 import styles from '../ScreenRegister/styleRegister';
+import { FormValues, RegisterScreenNavigationProp } from './utils/types/interfaces';
+import { registerUser } from '../ScreenLogin/redux/authService';
+
 type ScreenRegisterProps = {
   navigation: RegisterScreenNavigationProp;
 };
@@ -15,18 +16,18 @@ const ScreenRegister: React.FC<ScreenRegisterProps> = ({ navigation }) => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: FormValues) => {
-    if (mmkv.getString('username') === data.username) {
-      Alert.alert('Registration Error', 'Username already exists');
-      return;
+  const onSubmit = async (data: FormValues) => {
+    try {
+      const user = await registerUser(data.email, data.password, data.name);
+      Alert.alert('Registration Successful', 'You can now log in');
+      navigation.navigate('Login');
+    } catch (error) {
+      if (error instanceof Error) {
+        Alert.alert('Registration Error', error.message);
+      } else {
+        Alert.alert('Registration Error', 'An unknown error occurred');
+      }
     }
-
-    const hashedPassword = btoa(data.password);
-
-    mmkv.set('username', data.username);
-    mmkv.set('userpassword', hashedPassword);
-    Alert.alert('Registration Successful', 'You can now log in');
-    navigation.navigate('Login');
   };
 
   return (
@@ -106,7 +107,7 @@ const ScreenRegister: React.FC<ScreenRegisterProps> = ({ navigation }) => {
         {errors.password && <Text style={styles.errorText}>{errors.password.message}</Text>}
         
         <TouchableOpacity style={styles.RegisterButton} onPress={handleSubmit(onSubmit)}>
-              <Text style={styles.RegisterText}>Register</Text>
+          <Text style={styles.RegisterText}>Register</Text>
         </TouchableOpacity>
         <Text style={styles.loginPrompt}>
           Already have an account?{' '}
