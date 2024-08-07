@@ -1,8 +1,9 @@
 // CustomHeader.tsx
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, StatusBar } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../../ScreenLogin/redux/authSlice';
+import { logoutUser } from '../../../ScreenLogin/redux/authService';// Import the logoutUser function
 import { HomeScreenNavigationProp } from '../../utils/type/interfaces';
 
 interface CustomHeaderProps {
@@ -13,9 +14,13 @@ interface CustomHeaderProps {
 const CustomHeader: React.FC<CustomHeaderProps> = ({ title, navigation }) => {
   const dispatch = useDispatch();
 
-  const handleLogout = () => {
-    dispatch(logout());
-    // navigation.navigate('Login');
+  const handleLogout = async () => {
+    try {
+      await logoutUser();
+      dispatch(logout());
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
   };
 
   return (
