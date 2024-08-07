@@ -8,6 +8,8 @@ import { loginUser } from './redux/authService';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../utils/interfaces/RootStackParamList';
+import { useDispatch } from 'react-redux';
+import { login } from './redux/authSlice'; 
 
 type FormValues = {
   email: string;
@@ -22,12 +24,21 @@ const ScreenLogin: React.FC = () => {
   });
 
   const navigation = useNavigation<LoginScreenNavigationProp>();
+  const dispatch = useDispatch();
 
   const onSubmit = async (data: FormValues) => {
     try {
-      const user = await loginUser(data.email, data.password);
-      Alert.alert('Login Successful', `Welcome back, ${user.displayName}!`);
-      navigation.navigate('Home');  // Navigate to Home screen
+      const response = await loginUser(data.email, data.password);
+      
+      if (response.success) {
+
+        dispatch(login(data.email)); 
+        Alert.alert('Login Successful', `Welcome back, ${response.displayName}!`);
+        // navigation.navigate('Home');
+        
+      } else {
+        Alert.alert('Login Error', response.message || 'An unknown error occurred');
+      }
     } catch (error) {
       if (error instanceof Error) {
         Alert.alert('Login Error', error.message);

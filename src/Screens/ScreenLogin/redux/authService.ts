@@ -1,37 +1,71 @@
 import auth from '@react-native-firebase/auth';
+import { storage } from '../../../utils/Storage/mmkv';
 
-export const loginUser = async (email: string, password: string) => {
+interface AuthResponse {
+  success: boolean;
+  displayName?: string;
+  message?: string;
+}
+
+export const loginUser = async (email: string, password: string): Promise<AuthResponse> => {
   try {
-    const userCredential = await auth().signInWithEmailAndPassword(email, password);
-    return userCredential.user;
-  } catch (error) {
+  await auth().signInWithEmailAndPassword(email, password);
+    const currentUser = auth().currentUser;
 
-    if (error instanceof Error) {
-      throw new Error(error.message);
+    if (currentUser) {
+      
+     const token = await currentUser.getIdToken();
+       storage.set('userToken',token);
+      return {
+        success: true,
+        displayName: currentUser.displayName || 'User',
+      };
+    } else {
+      return {
+        success: false,
+        message: 'User not found',
+      };
     }
-    throw new Error('Auserauthn unknown error occurred');
+  } catch (error) {
+    if (error instanceof Error) {
+      return {
+        success: false,
+        message: error.message,
+      };
+    }
+    return {
+      success: false,
+      message: 'An unknown error occurred',
+    };
   }
 };
 
-export const registerUser = async (email: string, password: string, displayName: string) => {
+export const registerUser = async (email: string, password: string, displayName: string): Promise<AuthResponse> => {
   try {
     const userCredential = await auth().createUserWithEmailAndPassword(email, password);
     await userCredential.user.updateProfile({ displayName });
-    return userCredential.user;
+    return {
+      success: true,
+      displayName,
+    };
   } catch (error) {
-
     if (error instanceof Error) {
-      throw new Error(error.message);
+      return {
+        success: false,
+        message: error.message,
+      };
     }
-    throw new Error('An unknown error occurred');
+    return {
+      success: false,
+      message: 'An unknown error occurred',
+    };
   }
 };
 
-export const logoutUser = async () => {
+export const logoutUser = async (): Promise<void> => {
   try {
     await auth().signOut();
   } catch (error) {
-   
     if (error instanceof Error) {
       throw new Error(error.message);
     }

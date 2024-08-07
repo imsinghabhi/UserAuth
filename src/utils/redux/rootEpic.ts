@@ -4,7 +4,7 @@ import fetchImageDataEpic from '../../Screens/ScreenHome/redux/imageEpic';
 
 
 const epics: Epic[] = [
-  authEpic,
+  // authEpic,
   fetchImageDataEpic
 ] as Epic[];
 
