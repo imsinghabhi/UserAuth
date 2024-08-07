@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { storage } from '../../../utils/Storage/mmkv';
 
 interface AuthState {
   isAuthenticated: boolean;
@@ -6,7 +7,7 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  isAuthenticated: false,
+  isAuthenticated: storage.getString('authToken') ? true : false,
   user: null,
 };
 
@@ -17,7 +18,6 @@ const authSlice = createSlice({
     login(state, action: PayloadAction<string>) {
       state.isAuthenticated = true;
       state.user = action.payload;
-      console.log("ghhhhhhh",state.user);
     },
     logout(state) {
       state.isAuthenticated = false;

@@ -1,5 +1,5 @@
 import auth from '@react-native-firebase/auth';
-import { storage } from '../../../utils/Storage/mmkv';
+import { storage } from '../../../utils/Storage/mmkv';  // Ensure MMKV is configured correctly
 
 interface AuthResponse {
   success: boolean;
@@ -9,13 +9,13 @@ interface AuthResponse {
 
 export const loginUser = async (email: string, password: string): Promise<AuthResponse> => {
   try {
-  await auth().signInWithEmailAndPassword(email, password);
+    await auth().signInWithEmailAndPassword(email, password);
     const currentUser = auth().currentUser;
 
     if (currentUser) {
-      
-     const token = await currentUser.getIdToken();
-       storage.set('userToken',token);
+      const token = await currentUser.getIdToken();
+      storage.set('authToken', token);
+
       return {
         success: true,
         displayName: currentUser.displayName || 'User',
@@ -44,6 +44,9 @@ export const registerUser = async (email: string, password: string, displayName:
   try {
     const userCredential = await auth().createUserWithEmailAndPassword(email, password);
     await userCredential.user.updateProfile({ displayName });
+    const token = await userCredential.user.getIdToken();
+    storage.set('authToken', token);
+    
     return {
       success: true,
       displayName,
@@ -65,6 +68,7 @@ export const registerUser = async (email: string, password: string, displayName:
 export const logoutUser = async (): Promise<void> => {
   try {
     await auth().signOut();
+    storage.delete('authToken');
   } catch (error) {
     if (error instanceof Error) {
       throw new Error(error.message);

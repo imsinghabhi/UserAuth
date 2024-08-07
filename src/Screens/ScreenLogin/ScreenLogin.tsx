@@ -34,7 +34,7 @@ const ScreenLogin: React.FC = () => {
 
         dispatch(login(data.email)); 
         Alert.alert('Login Successful', `Welcome back, ${response.displayName}!`);
-        // navigation.navigate('Home');
+        
         
       } else {
         Alert.alert('Login Error', response.message || 'An unknown error occurred');
