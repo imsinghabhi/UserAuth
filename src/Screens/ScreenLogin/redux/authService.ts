@@ -5,18 +5,14 @@ import { AppDispatch } from '../../../utils/redux/store';
 import { login } from './authSlice';
 import { Alert } from 'react-native';
 
-
 interface AuthResponse {
   success: boolean;
   displayName?: string;
   message?: string;
 }
 
-
 export const loginWithGoogle = async (dispatch: AppDispatch) => {
   try {
-
-  
     await GoogleSignin.hasPlayServices();
     const userInfo = await GoogleSignin.signIn();
     const googleCredential = auth.GoogleAuthProvider.credential(userInfo.idToken);
@@ -33,7 +29,6 @@ export const loginWithGoogle = async (dispatch: AppDispatch) => {
     console.error(error);
   }
 };
-
 
 export const loginUser = async (email: string, password: string): Promise<AuthResponse> => {
   try {
@@ -62,8 +57,8 @@ export const loginUser = async (email: string, password: string): Promise<AuthRe
       };
     }
     return {
-      success: false,
-      message: 'An unknown error occurred',
+        success: false,
+        message: 'An unknown error occurred',
     };
   }
 };
@@ -93,26 +88,24 @@ export const registerUser = async (email: string, password: string, displayName:
   }
 };
 
-
-
 export const logoutUser = async () => {
   try {
     const currentUser = auth().currentUser;
-
     if (currentUser) {
+      console.log("User currently signed in:", currentUser.email);
       await auth().signOut();
-    }
-
-    const isGoogleSignedIn = await GoogleSignin.signIn();
-    if (isGoogleSignedIn) {
       await GoogleSignin.signOut();
+      storage.delete('authToken');
+      console.log("User signed out successfully.");
+    } else {
+      console.log("No user currently signed in.");
     }
-
-    storage.delete('authToken');
   } catch (error) {
     if (error instanceof Error) {
+      console.error("Error during logout:", error.message);
       throw new Error(error.message);
     }
+    console.error("An unknown error occurred during logout.");
     throw new Error('An unknown error occurred');
   }
 };
