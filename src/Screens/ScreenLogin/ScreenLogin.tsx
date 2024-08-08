@@ -10,7 +10,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../utils/interfaces/RootStackParamList';
 import { useDispatch } from 'react-redux';
 import { login } from './redux/authSlice'; 
-import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin'; // Import Google Sign-In Button
+import {  GoogleSigninButton } from '@react-native-google-signin/google-signin'; 
 
 type FormValues = {
   email: string;

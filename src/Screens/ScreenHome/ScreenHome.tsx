@@ -1,7 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
 import { View, BackHandler, SafeAreaView, StatusBar } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { useFocusEffect } from '@react-navigation/native';
 import { fetchImageDataRequest } from './redux/imageSlice'; 
 import ImageList from './Components/ComponentImageList/ImageList';
 import LoadingScreen from './Components/ComponentLoader/LoadingScreen';
