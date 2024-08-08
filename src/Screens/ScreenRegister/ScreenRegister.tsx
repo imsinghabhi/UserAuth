@@ -106,6 +106,7 @@ const ScreenRegister: React.FC<ScreenRegisterProps> = ({ navigation }) => {
         />
         {errors.password && <Text style={styles.errorText}>{errors.password.message}</Text>}
         
+        
         <TouchableOpacity style={styles.RegisterButton} onPress={handleSubmit(onSubmit)}>
           <Text style={styles.RegisterText}>Register</Text>
         </TouchableOpacity>
