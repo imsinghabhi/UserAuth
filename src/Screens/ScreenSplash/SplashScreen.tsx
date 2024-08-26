@@ -22,7 +22,7 @@ const SplashScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome to MyApp</Text>
+      <Text style={styles.title}>Hold on!!</Text>
     </View>
   );
 };
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#90EE90',
+    backgroundColor: 'black',
   },
   title: {
     fontSize: 46,
