@@ -37,7 +37,7 @@ const RootNavigator: React.FC = () => {
       setIsLoading(false);
     };
 
-    const timeoutId = setTimeout(checkAuth, 3000);
+    const timeoutId = setTimeout(checkAuth, 1000);
 
     return () => clearTimeout(timeoutId);
   }, [dispatch]);
