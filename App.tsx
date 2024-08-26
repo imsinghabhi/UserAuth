@@ -5,7 +5,8 @@ import AppNavigator from './src/routes/AppNavigator';
 import { NavigationContainer } from '@react-navigation/native';
 import RootNavigator from './src/routes/RootNavigator';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
-
+import ErrorBoundary from 'react-native-error-boundary';
+import CustomFallback from './src/Screens/ScreenFallback/CustomFallback';
 
 const App = () => {
 
@@ -19,9 +20,11 @@ const App = () => {
   
   return (
     <Provider store={store}>
+       <ErrorBoundary FallbackComponent={CustomFallback}>
       <NavigationContainer>
        <RootNavigator/>
       </NavigationContainer>
+      </ErrorBoundary>
     </Provider>
   );
 };

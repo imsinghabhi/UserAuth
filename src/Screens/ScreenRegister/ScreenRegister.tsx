@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, TextInput, Alert, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Alert, TouchableOpacity, ImageBackground, StatusBar } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schema } from './utils/schema/validation';
-import styles from '../ScreenRegister/styleRegister';
+import styles from './styleRegister';  // Update to the correct path
 import { FormValues, RegisterScreenNavigationProp } from './utils/types/interfaces';
 import { registerUser } from '../ScreenLogin/redux/authService';
 
@@ -18,20 +18,17 @@ const ScreenRegister: React.FC<ScreenRegisterProps> = ({ navigation }) => {
 
   const onSubmit = async (data: FormValues) => {
     try {
-      const user = await registerUser(data.email, data.password, data.name);
+      await registerUser(data.email, data.password, data.name);
       Alert.alert('Registration Successful', 'You can now log in');
       navigation.navigate('Login');
     } catch (error) {
-      if (error instanceof Error) {
-        Alert.alert('Registration Error', error.message);
-      } else {
-        Alert.alert('Registration Error', 'An unknown error occurred');
-      }
+      Alert.alert('Registration Error', error instanceof Error ? error.message : 'An unknown error occurred');
     }
   };
 
   return (
-    <View style={styles.outerContainer}>
+    <ImageBackground source={require('../../assets/bgimg.png')} style={styles.outerContainer}>
+      <StatusBar translucent backgroundColor="rgba(0, 0, 0, 0.2)" />
       <View style={styles.RegisterContainer}>
         <Text style={styles.RegisterTitle}>Register</Text>
         <Controller
@@ -106,7 +103,6 @@ const ScreenRegister: React.FC<ScreenRegisterProps> = ({ navigation }) => {
         />
         {errors.password && <Text style={styles.errorText}>{errors.password.message}</Text>}
         
-        
         <TouchableOpacity style={styles.RegisterButton} onPress={handleSubmit(onSubmit)}>
           <Text style={styles.RegisterText}>Register</Text>
         </TouchableOpacity>
@@ -117,7 +113,7 @@ const ScreenRegister: React.FC<ScreenRegisterProps> = ({ navigation }) => {
           </Text>
         </Text>
       </View>
-    </View>
+    </ImageBackground>
   );
 };
 

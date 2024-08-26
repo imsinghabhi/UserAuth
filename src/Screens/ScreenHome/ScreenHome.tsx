@@ -12,6 +12,8 @@ import CustomHeader from './Components/ComponentCustomHeader/CustomHeader';
 import { HomeScreenNavigationProp } from './utils/type/interfaces';
 
 const ScreenHome: React.FC<Props> = ({ navigation }) => {
+
+
    const dispatch = useDispatch();
   const { data: imageData, loading, error } = useSelector((state: RootState) => state.images);
   
@@ -23,9 +25,9 @@ const ScreenHome: React.FC<Props> = ({ navigation }) => {
     return <LoadingScreen />;
   }
 
-  if (error) {
-    return <ErrorScreen error={error} />;
-  }
+  // if (error) {
+  //   return <ErrorScreen error={error} />;
+  // }
 
   return (
     <SafeAreaView style={styles.HomeScreenContainer}>

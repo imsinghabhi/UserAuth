@@ -3,32 +3,36 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   LoginContainer: {
     flex: 1,
-    backgroundColor: '#f0f4f7',
+    backgroundColor: '#f0f4f7', 
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
   },
   formContainer: {
     width: '100%',
-    backgroundColor: '#fff',
-    borderRadius: 10,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    borderRadius: 15,
     padding: 20,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },googleBtn:{
-
-    left:25,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.3)',
+    shadowColor: 'rgba(0, 0, 0, 0.2)',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.5,
+    shadowRadius: 8,
+    elevation: 10, 
+  },
+  googleBtn: {
+    height: 50,
+    width: '100%',
+    top: 10,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderRadius: 5,
   },
   LoginTitle: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#fff',
     marginBottom: 20,
     textAlign: 'center',
   },
@@ -61,10 +65,10 @@ const styles = StyleSheet.create({
   registerPrompt: {
     marginTop: 20,
     textAlign: 'center',
-    color: '#333',
+    color: '#fff',
   },
   registerLink: {
-    color: 'black',
+    color: 'white',
     fontWeight: 'bold',
   },
 });

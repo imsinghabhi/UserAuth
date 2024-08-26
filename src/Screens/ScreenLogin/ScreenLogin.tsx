@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { View, Text, TextInput, Alert, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { View, Text, TextInput, Alert, TouchableOpacity, ImageBackground, StatusBar } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schema } from './utils/schema/validation';
@@ -10,7 +10,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../utils/interfaces/RootStackParamList';
 import { useDispatch } from 'react-redux';
 import { login } from './redux/authSlice'; 
-import {  GoogleSigninButton } from '@react-native-google-signin/google-signin'; 
+import { GoogleSigninButton } from '@react-native-google-signin/google-signin'; 
 
 type FormValues = {
   email: string;
@@ -24,7 +24,6 @@ const ScreenLogin: React.FC = () => {
     resolver: yupResolver(schema),
   });
 
-  
   const navigation = useNavigation<LoginScreenNavigationProp>();
   const dispatch = useDispatch();
 
@@ -51,11 +50,14 @@ const ScreenLogin: React.FC = () => {
     loginWithGoogle(dispatch);
   };
 
-
   return (
-    <View style={styles.LoginContainer}>
+    
+        
+    <ImageBackground source={require('../../assets/bgimg.png')} style={styles.LoginContainer}>
+    
+      <StatusBar translucent backgroundColor="rgba(0, 0, 0, 0.2)" />
       <View style={styles.formContainer}>
-        <Text style={styles.LoginTitle}>Login</Text>
+        <Text style={styles.LoginTitle}>Login Here!!</Text>
         <Controller
           control={control}
           name="email"
@@ -88,7 +90,8 @@ const ScreenLogin: React.FC = () => {
         <TouchableOpacity style={styles.LoginButton} onPress={handleSubmit(onSubmit)}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
-        <GoogleSigninButton style={styles.googleBtn}
+        <GoogleSigninButton 
+          style={styles.googleBtn}
           size={GoogleSigninButton.Size.Wide}
           color={GoogleSigninButton.Color.Dark}
           onPress={handleGoogleSignIn}
@@ -101,7 +104,7 @@ const ScreenLogin: React.FC = () => {
           </Text>
         </Text>
       </View>
-    </View>
+    </ImageBackground>
   );
 };
 

@@ -14,8 +14,12 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 const AuthNavigator = () => (
   <Stack.Navigator initialRouteName="Login">
-    <Stack.Screen name="Login" component={ScreenLogin} />
-    <Stack.Screen name="Register" component={ScreenRegister} />
+    <Stack.Screen name="Login" component={ScreenLogin}  options={{
+          headerShown: false, 
+        }} />
+    <Stack.Screen name="Register" component={ScreenRegister}  options={{
+          headerShown: false, 
+        }}  />
   </Stack.Navigator>
 );
 
