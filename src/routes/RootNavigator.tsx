@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStackNavigator } from '@react-navigation/stack';
-import { RootState } from '../utils/redux/store';
+import { RootState } from '../redux/store';
 import ScreenLogin from '../Screens/ScreenLogin/ScreenLogin';
 import ScreenRegister from '../Screens/ScreenRegister/ScreenRegister';
 import SplashScreen from '../Screens/ScreenSplash/SplashScreen';

@@ -1,6 +1,6 @@
 import { combineEpics, Epic } from 'redux-observable';
-import { authEpic } from '../../Screens/ScreenLogin/redux/authEpic';
-import fetchImageDataEpic from '../../Screens/ScreenHome/redux/imageEpic';
+import { authEpic } from '../Screens/ScreenLogin/redux/authEpic';
+import fetchImageDataEpic from '../Screens/ScreenHome/redux/imageEpic';
 
 
 const epics: Epic[] = [

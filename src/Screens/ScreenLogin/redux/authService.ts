@@ -1,7 +1,7 @@
 import auth from '@react-native-firebase/auth';
 import { storage } from '../../../utils/Storage/mmkv';  // Ensure MMKV is configured correctly
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import { AppDispatch } from '../../../utils/redux/store';
+import { AppDispatch } from '../../../redux/store';
 import { login } from './authSlice';
 import { Alert } from 'react-native';
 

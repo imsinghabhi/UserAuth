@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchImageDataRequest } from './redux/imageSlice'; 
 import ImageList from './Components/ComponentImageList/ImageList';
 import LoadingScreen from './Components/ComponentLoader/LoadingScreen';
-import { RootState } from '../../utils/redux/store';
+import { RootState } from '../../redux/store';
 import styles from './styleHome';
 import CustomHeader from './Components/ComponentCustomHeader/CustomHeader';
 import { HomeScreenNavigationProp } from './utils/type/interfaces';
